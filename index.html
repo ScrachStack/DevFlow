@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ScratchStack - Full Stack Developer</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #282828;
+            color: #00ff00;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        #preloader {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            white-space: nowrap;
+            animation: fadeOut 2s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+        .container {
+            background-color: #000;
+            border: 3px solid #00ff00; 
+            padding: 50px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.6); 
+            height: 75%;
+            width: 95%; 
+            max-width: 950px; 
+        }
+
+        h1 {
+            font-size: 4em; 
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+        }
+
+        p {
+            font-size: 1.5em; 
+            margin-bottom: 30px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #00ff00;
+            font-size: 1.8em; 
+            font-weight: bold;
+            padding: 15px 30px; 
+            border-radius: 10px; 
+            border: 3px solid #00ff00;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.8); 
+        }
+
+        a:hover {
+            background-color: #00ff00;
+            color: #000;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 1); 
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .blink-text {
+            animation: blink 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader"></div>
+
+    <div class="container">
+        <h1 class="blink-text">ScratchStack</h1>
+        <p>Full Stack Developer</p>
+        <a href="https://github.com/ScrachStack" target="_blank">GitHub</a>
+    </div>
+</body>
+<script>
+    const preloader = document.getElementById('preloader');
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@/!{}#$%^&*()';
+    let preloaderText = '';
+    let preloaderInterval;
+
+    function generateRandomLetter() {
+        return letters.charAt(Math.floor(Math.random() * letters.length));
+    }
+
+    function startPreloader() {
+        preloaderText = '';
+        preloaderInterval = setInterval(function() {
+            preloaderText += generateRandomLetter();
+            preloader.innerHTML = preloaderText + '|'; 
+        }, 20); 
+    }
+
+    function hidePreloader() {
+        clearInterval(preloaderInterval);
+        preloader.style.display = 'none'; 
+        document.querySelector('.container').style.opacity = 1; 
+    }
+
+    window.onload = function() {
+        startPreloader();
+        setTimeout(hidePreloader, 9000); 
+    };
+</script>
+</html>
